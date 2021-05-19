@@ -105,11 +105,11 @@ const Section = styled.div`
     max-width: 1128px;
     align-items: center;
     margin: auto;
-    justify-content: center;
 
     @media (max-width: 768px) {
         margin: auto;
         min-height: 0px;
+        justify-content: center;
     }
 `;
 
