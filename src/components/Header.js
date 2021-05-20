@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from 'react-redux';
+import {
+    signOutAPI,
+} from '../actions';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <Container>
             <Content>
@@ -51,12 +55,18 @@ const Header = () => {
                             </a>
                         </NavList>
                         <User>
-                            <a href="">
+                            <a>
+                                {props.user && props.user.photoURL ?
+                                <img src={props.user.photoURL} alt=""/>
+                                :
                                 <img src="/images/user.svg" alt=""/>
-                                <span>Me</span>
-                                <img src="/images/down-icon.svg" alt="" />
+                                }
+                                <span>
+                                    Me
+                                    <img src="/images/down-icon.svg" alt="" />
+                                </span>
                             </a>
-                            <SignOut>
+                            <SignOut onClick={() => props.signOut()}>
                                 <a>
                                     로그아웃
                                 </a>
@@ -65,7 +75,8 @@ const Header = () => {
                         <Work>
                             <a>
                                 <img src="/images/nav-work.svg" alt="" />
-                                <span>Work
+                                <span>
+                                    Work
                                     <img src="/images/down-icon.svg" alt="" />
                                 </span>
 
@@ -257,4 +268,12 @@ const Work = styled(User)`
 
 `;
 
-export default Header;
+const mapStateToProps = (state) => ({
+    user: state.userState.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    signOut: () => dispatch(signOutAPI()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
