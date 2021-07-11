@@ -1,14 +1,14 @@
 import React from 'react';
+import SearchIcon from '@material-ui/icons/Search';
 import '../../style/Header.css';
 
 const Header = () => {
     return (
         <div className="header">
-            <h1>Header</h1>
             <div className="header__left">
-                <img src="" alt="" />
+                <img src="/images/linkedin.png" alt="" />
                 <div className="header__search">
-                    {/* SearchIcon */}
+                    <SearchIcon />
                     <input type="text" />
                 </div>
             </div>
